@@ -10,28 +10,30 @@ const progress = document.getElementById('progress');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
+const audioBar = document.getElementById('audio-player');
+const volumeSlider = document.getElementById('volume-slider');
 
 // Music
 const songs =[
   {
     name: 'jacinto-1',
     displayName: 'Electric Chill Machine',
-    artist: 'Jacinto Design',
+    artist: 'Random',
   },
   {
     name: 'jacinto-2',
     displayName: 'Seven Nation Army (Remix)',
-    artist: 'Jacinto Design',
+    artist: 'Random',
   },
   {
     name: 'jacinto-3',
     displayName: 'Song3',
-    artist: 'Jacinto Design',
+    artist: 'Random',
   },
   {
     name: 'metric-1',
     displayName: 'Song4',
-    artist: 'Jacinto Design',
+    artist: 'Random',
   }
 ];
 
@@ -44,6 +46,7 @@ function playSong() {
   playBtn.classList.replace('fa-play', 'fa-pause');
   playBtn.setAttribute('title', 'Pause');
   music.play();
+
 }
 
 // Pause
@@ -119,15 +122,19 @@ function updateProgressBar(e){
 }
 // Move progress bar
 function setProgressBar(e){
-  console.log(e);
+ 
   const width = this.clientWidth;
-  console.log('width', width);
+ 
   const clickX = e.offsetX;
-  console.log('clickX', clickX);
+  
   const {duration} = music;
-  console.log(clickX / width);
-  console.log((clickX / width)*duration);
+  
   music.currentTime = (clickX / width)*duration;
+}
+function changeVolume(){
+    let currentValue = volumeSlider.value;
+    audioBar.volume = (currentValue / 100);
+    console.log(currentValue);
 }
 
 
